@@ -118,7 +118,7 @@ function config_ironic_dashboard {
 
 function config_karbor_dashboard {
     for file in ${SITE_PACKAGES}/karbor_dashboard/enabled/_*[^__].py; do
-        config_dashboard "${ENABLE_KARBOR}" \
+        config_dashboard "${ENABLE_KARBOR:-no}" \
             "${SITE_PACKAGES}/karbor_dashboard/enabled/${file##*/}" \
             "${SITE_PACKAGES}/openstack_dashboard/local/enabled/${file##*/}"
     done
@@ -198,7 +198,7 @@ function config_octavia_dashboard {
 
 function config_qinling_dashboard {
     for file in ${SITE_PACKAGES}/qinling_dashboard/enabled/_*[^__].py; do
-        config_dashboard "${ENABLE_QINLING}" \
+        config_dashboard "${ENABLE_QINLING:-no}" \
             "${SITE_PACKAGES}/qinling_dashboard/enabled/${file##*/}" \
             "${SITE_PACKAGES}/openstack_dashboard/local/enabled/${file##*/}"
     done
@@ -214,16 +214,16 @@ function config_sahara_dashboard {
 
 function config_searchlight_ui {
     for file in ${SITE_PACKAGES}/searchlight_ui/enabled/_*[^__].py; do
-        config_dashboard "${ENABLE_SEARCHLIGHT}" \
+        config_dashboard "${ENABLE_SEARCHLIGHT:-no}" \
             "${SITE_PACKAGES}/searchlight_ui/enabled/${file##*/}" \
             "${SITE_PACKAGES}/openstack_dashboard/local/enabled/${file##*/}"
     done
 
-    config_dashboard "${ENABLE_SEARCHLIGHT}" \
+    config_dashboard "${ENABLE_SEARCHLIGHT:-no}" \
         "${SITE_PACKAGES}/searchlight_ui/local_settings.d/_1001_search_settings.py" \
         "${SITE_PACKAGES}/openstack_dashboard/local/local_settings.d/_1001_search_settings.py"
 
-    config_dashboard "${ENABLE_SEARCHLIGHT}" \
+    config_dashboard "${ENABLE_SEARCHLIGHT:-no}" \
         "${SITE_PACKAGES}/searchlight_ui/conf/searchlight_policy.json" \
         "/etc/openstack-dashboard/searchlight_policy.json"
 }
